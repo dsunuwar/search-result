@@ -1,0 +1,13 @@
+{
+  "editor.formatOnSave": true,
+
+  // to avoid conflict, do not use eslint for code formatting,
+  // leave this task to prettier
+  "eslint.format.enable": false,
+
+  "prettier.configPath": ".prettierrc",
+  "[typescriptreact]": {
+    // format .tsx files with prettier
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
