@@ -1,3 +1,5 @@
+"use client";
+
 import { PreviewImage } from "@/app/lib/definitions";
 
 export default function Image({ caption, url }: PreviewImage) {
