@@ -1,7 +1,15 @@
 "use client";
 
-import { searchResults } from "@/app/lib/data";
+import { useEffect, useState } from "react";
+import { HotelsT } from "@/app/lib/definitions";
+import { sortHotelsBy } from "@/app/lib/utils";
 import Card from "@/app/ui/search-result/card";
+import Dropdown from "@/app/ui/dropdown";
+
+type Props = {
+  results: HotelsT[];
+  city: string;
+};
 
 /**
  *
@@ -9,21 +17,51 @@ import Card from "@/app/ui/search-result/card";
  * - This component may be a part of search component.
  * Where it receives results prop from parent. Hence im not storing it in local state.
  */
-export default function Results() {
-  console.log(searchResults);
-  const hotelCount = searchResults.results.length;
-  const hotels = searchResults.results;
 
-  // assuming this will be dynamic value
-  const city = "Sydney";
+const sortOptions = [
+  { text: "Price (high-low)", value: "high-low" },
+  { text: "Price (low-high)", value: "low-high" },
+];
+
+export default function Results({ results = [], city }: Props) {
+  const [hotels, setHotels] = useState(results);
+  const [sortBy, setSortBy] = useState("high-low");
+  const hotelCount = results.length;
+
+  useEffect(() => {
+    const sortedByDefault = sortHotelsBy(results, sortOptions[0].value);
+    setHotels(sortedByDefault);
+  }, [results]);
+
+  const handleChange = (e) => {
+    const sortOption = e.target.value;
+    setSortBy(sortOption);
+
+    const sortedHotels = sortHotelsBy(hotels, sortOption);
+    setHotels(() => sortedHotels);
+  };
 
   return (
     <div>
       <h3>
-        {hotelCount} hotels in <strong>{city}</strong>
+        {hotelCount} hotels in <strong>{city}</strong>.
       </h3>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          marginBottom: "10px",
+        }}
+      >
+        <Dropdown
+          label="Sort by"
+          selectedSortValue={sortBy}
+          data={sortOptions}
+          handleChange={handleChange}
+        />
+      </div>
       <ul>
-        {hotels?.map((hotel) => (
+        {hotels.map((hotel) => (
           <li
             key={hotel.id}
             style={{
@@ -32,7 +70,7 @@ export default function Results() {
               display: "flex",
             }}
           >
-            <Card property={hotel.property} />
+            <Card property={hotel.property} offer={hotel.offer} />
           </li>
         ))}
       </ul>
