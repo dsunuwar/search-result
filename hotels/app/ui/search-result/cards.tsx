@@ -24,7 +24,7 @@ const sortOptions = [
 ];
 
 export default function Results({ results = [], city }: Props) {
-  const [hotels, setHotels] = useState(results);
+  const [hotels, setHotels] = useState<HotelsT[]>(results);
   const [sortBy, setSortBy] = useState("high-low");
   const hotelCount = results.length;
 
