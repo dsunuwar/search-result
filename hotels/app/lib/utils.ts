@@ -18,7 +18,13 @@ export const sortHotelsBy = (
   const decend = (a: HotelsT, b: HotelsT) =>
     b.offer.displayPrice.amount - a.offer.displayPrice.amount;
 
-  const sortDirection =
-    sortOption === hotelSortOptions.highLow.value ? decend : ascend;
-  return hotels.sort(sortDirection);
+  if (sortOption === hotelSortOptions.highLow.value) {
+    return hotels.sort(decend);
+  }
+
+  if (sortOption === hotelSortOptions.lowHigh.value) {
+    return hotels.sort(ascend);
+  }
+
+  return hotels;
 };
