@@ -14,7 +14,7 @@ type Props = {
 export default function Card({ property, offer }: Props) {
   const { title, address, previewImage, rating } = property;
 
-  console.log(offer);
+  // console.log(offer);
   // placeholder dynamic value that should come from parent
   const totalNight = 1;
   return (
@@ -46,7 +46,9 @@ export default function Card({ property, offer }: Props) {
           }}
         >
           <h1>
-            {`${title},    `}
+            <span data-testid="property-title" style={{ marginRight: "10px" }}>
+              {title}
+            </span>
             <Rating
               ratingType={rating.ratingType}
               ratingValue={rating.ratingValue}
@@ -61,6 +63,7 @@ export default function Card({ property, offer }: Props) {
             {address.join(", ")}
           </p>
           <a
+            data-testid="offer-name"
             href="#"
             style={{
               color: "#E00E00",

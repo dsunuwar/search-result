@@ -1,4 +1,3 @@
-// keep all data type definitions here
 export enum RatingTypeEnum {
   self = "self",
   star = "star",

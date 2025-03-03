@@ -26,6 +26,7 @@ const sortOptions = [
 export default function Results({ results = [], city }: Props) {
   const [hotels, setHotels] = useState<HotelsT[]>(results);
   const [sortBy, setSortBy] = useState("high-low");
+
   const hotelCount = results.length;
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function Results({ results = [], city }: Props) {
 
   return (
     <div>
-      <h3>
+      <h3 data-testid="result-count">
         {hotelCount} hotels in <strong>{city}</strong>.
       </h3>
       <div

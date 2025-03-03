@@ -2,7 +2,7 @@ import { sortHotelsBy } from "@/app/lib/utils";
 import { hotelSortOptions } from "@/app/lib/constants";
 
 import { searchResults } from "@/app/lib/data";
-import { HotelsT } from "./definitions";
+import { HotelsT } from "@/app/lib/definitions";
 
 describe("sortHotelsBy", () => {
   // clone data to be safe from accidental mutation
