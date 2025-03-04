@@ -1,9 +1,9 @@
 
 # Introduction
 
-Please note this is not the main app directory. 
-In order to run the project, cd into hotels directory.
-Please check README file for getting started.
+Please note this is not the main app directory.
+In order to run the project, cd into `hotels` directory.
+Please check `README` file for getting started.
 
 ## Project Structure
 
