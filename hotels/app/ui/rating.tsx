@@ -19,7 +19,9 @@ type RateProp = {
 };
 
 const StarRate = ({ index, ratingValue, color, ratingType }: RateProp) => {
+  // this is mainly for testing hook, not essential for feature functioning
   const raterShape = ratingType === "star" ? "star" : "circle";
+
   const isStar = ratingType === RatingTypeEnum.star;
 
   // render full star

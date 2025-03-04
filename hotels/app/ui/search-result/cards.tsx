@@ -43,8 +43,8 @@ export default function Results({ results = [], city }: Props) {
   };
 
   return (
-    <div style={{ width: "860px" }}>
-      <h3 data-testid="result-count">
+    <div style={{ marginTop: "30px" }}>
+      <h3 data-testid="result-count" style={{ margin: "0 5px" }}>
         {hotelCount} hotels in <strong>{city}</strong>.
       </h3>
       <div
