@@ -20,10 +20,11 @@ type RateProp = {
 
 const StarRate = ({ index, ratingValue, color, ratingType }: RateProp) => {
   const raterShape = ratingType === "star" ? "star" : "circle";
+  const isStar = ratingType === RatingTypeEnum.star;
 
   // render full star
   if (index < ratingValue && index + 1 <= ratingValue) {
-    return ratingType === RatingTypeEnum.star ? (
+    return isStar ? (
       <FaStar color={color} title={raterShape} />
     ) : (
       <FaCircle color={color} title={raterShape} />
@@ -32,7 +33,7 @@ const StarRate = ({ index, ratingValue, color, ratingType }: RateProp) => {
 
   // render half star
   if (index < ratingValue && ratingValue < index + 1) {
-    return ratingType === RatingTypeEnum.star ? (
+    return isStar ? (
       <FaStarHalfAlt color={color} title={raterShape} />
     ) : (
       <FaCircleHalfStroke color={color} title={raterShape} />
@@ -40,7 +41,7 @@ const StarRate = ({ index, ratingValue, color, ratingType }: RateProp) => {
   }
 
   // render empty star
-  return ratingType === RatingTypeEnum.star ? (
+  return isStar ? (
     <FaRegStar color={color} title={raterShape} />
   ) : (
     <FaRegCircle color={color} title={raterShape} />
