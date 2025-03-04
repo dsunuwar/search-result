@@ -13,88 +13,67 @@ import { FaCircleHalfStroke } from "react-icons/fa6";
 
 type RateProp = {
   index: number;
-  activeStar: number;
+  ratingValue: number;
   color: string;
+  ratingType: string;
 };
 
-const StarRate = ({ index, activeStar, color }: RateProp) => {
-  if (index < activeStar && index + 1 < activeStar) {
-    return (
-      <>
-        <FaStar color={color} />
-      </>
+const StarRate = ({ index, ratingValue, color, ratingType }: RateProp) => {
+  const raterShape = ratingType === "star" ? "star" : "circle";
+
+  // render full star
+  if (index < ratingValue && index + 1 <= ratingValue) {
+    return ratingType === RatingTypeEnum.star ? (
+      <FaStar color={color} title={raterShape} />
+    ) : (
+      <FaCircle color={color} title={raterShape} />
     );
   }
 
-  if (index < activeStar && activeStar < index + 1 && activeStar % 1 !== 0) {
-    return (
-      <>
-        <FaStarHalfAlt color={color} />
-      </>
+  // render half star
+  if (index < ratingValue && ratingValue < index + 1) {
+    return ratingType === RatingTypeEnum.star ? (
+      <FaStarHalfAlt color={color} title={raterShape} />
+    ) : (
+      <FaCircleHalfStroke color={color} title={raterShape} />
     );
   }
 
-  return (
-    <>
-      <FaRegStar color={color} />
-    </>
+  // render empty star
+  return ratingType === RatingTypeEnum.star ? (
+    <FaRegStar color={color} title={raterShape} />
+  ) : (
+    <FaRegCircle color={color} title={raterShape} />
   );
 };
 
-const CircleRate = ({ index, activeStar, color }: RateProp) => {
-  if (index < activeStar) {
-    return (
-      <>
-        <FaCircle color={color} />
-      </>
-    );
-  }
-
-  if (index < activeStar && activeStar < index + 1 && activeStar % 1 !== 0) {
-    return (
-      <>
-        <FaCircleHalfStroke color={color} />
-      </>
-    );
-  }
-
-  return (
-    <>
-      <FaRegCircle color={color} />
-    </>
-  );
-};
-
+/**
+ * Note: This is display only rating component
+ */
 export default function Rating({ ratingType, ratingValue }: RatingT) {
   const totalStars = 5;
-  const activeStars = ratingValue;
 
   return (
     <span
+      data-testid="ratings"
       style={{
         display: "flex",
+        alignItems: "center",
       }}
     >
       {[...new Array(totalStars)].map((item, index) => {
         return (
           <Fragment key={index}>
-            {ratingType === RatingTypeEnum.star ? (
-              <StarRate
-                index={index}
-                activeStar={activeStars}
-                color="#FBCB3B"
-              />
-            ) : (
-              <CircleRate
-                index={index}
-                activeStar={activeStars}
-                color="#FBCB3B"
-              />
-            )}
+            <StarRate
+              index={index}
+              ratingValue={ratingValue}
+              color="#FBCB3B"
+              ratingType={ratingType}
+            />
           </Fragment>
         );
       })}
-      {activeStars}
+      {ratingValue}
     </span>
   );
 }
