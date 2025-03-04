@@ -14,7 +14,6 @@ type Props = {
 export default function Card({ property, offer }: Props) {
   const { title, address, previewImage, rating } = property;
 
-  // console.log(offer);
   // placeholder dynamic value that should come from parent
   const totalNight = 1;
   return (
@@ -45,7 +44,7 @@ export default function Card({ property, offer }: Props) {
             flex: "1 1 auto",
           }}
         >
-          <h1>
+          <h1 style={{ display: "flex" }}>
             <span data-testid="property-title" style={{ marginRight: "10px" }}>
               {title}
             </span>
