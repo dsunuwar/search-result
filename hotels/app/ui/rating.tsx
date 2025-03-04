@@ -31,8 +31,8 @@ const StarRate = ({ index, ratingValue, color, ratingType }: RateProp) => {
     );
   }
 
-  // render half star
-  if (index < ratingValue && ratingValue < index + 1) {
+  // render half star for half rating values
+  if (index < ratingValue && ratingValue % 1 !== 0) {
     return isStar ? (
       <FaStarHalfAlt color={color} title={raterShape} />
     ) : (
