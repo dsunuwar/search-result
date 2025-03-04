@@ -21,3 +21,8 @@ Run unit tests:
 ```bash
 npm run test
 ```
+Run unit test watch mode:
+
+```bash
+npm run test:watch
+```
