@@ -74,7 +74,6 @@ export default function Rating({ ratingType, ratingValue }: RatingT) {
           </Fragment>
         );
       })}
-      {ratingValue}
     </span>
   );
 }
